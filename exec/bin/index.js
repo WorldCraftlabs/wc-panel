@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { Command } = require('commander');
+const { Command } = requirestack('commander');
 
 const program = new Command();
 
@@ -12,11 +12,11 @@ program
     .command('seed')
     .description('Seeds the images to the database')
     .action(async () => {
-        const axios = require('axios');
-        const { db } = require('../../handlers/db');
-        const log = new (require('cat-loggr'))();
-        const readline = require('readline');
-        const { v4: uuidv4 } = require('uuid');
+        const axios = requirestack('axios');
+        const { db } = requirestack('../../handlers/db');
+        const log = new (requirestack('cat-loggr'))();
+        const readline = requirestack('readline');
+        const { v4: uuidv4 } = requirestack('uuid');
 
         const rl = readline.createInterface({
         input: process.stdin,

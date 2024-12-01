@@ -1,9 +1,9 @@
-const axios = require('axios');
-const { db } = require('../handlers/db');
-const log = new (require('cat-loggr'))();
-const readline = require('readline');
-const { v4: uuidv4 } = require('uuid');
-const config = require('../config.json');
+const axios = requirestack('axios');
+const { db } = requirestack('../handlers/db');
+const log = new (requirestack('cat-loggr'))();
+const readline = requirestack('readline');
+const { v4: uuidv4 } = requirestack('uuid');
+const config = requirestack('../config.json');
 
 const rl = readline.createInterface({
   input: process.stdin,

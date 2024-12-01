@@ -17,34 +17,34 @@
  * modules. This file also sets up the server to listen on a configured port and initializes logging.
  */
 
-const express = require('express');
-const session = require('express-session');
-const passport = require('passport');
-const bodyParser = require('body-parser');
-const fs = require('node:fs');
-const config = require('./config.json');
+const express = requirestack('express');
+const session = requirestack('express-session');
+const passport = requirestack('passport');
+const bodyParser = requirestack('body-parser');
+const fs = requirestack('node:fs');
+const config = requirestack('./config.json');
 const ascii = fs.readFileSync('./handlers/ascii.txt', 'utf8');
-const app = express();
-const path = require('path');
-const chalk = require('chalk');
-const expressWs = require('express-ws')(app);
-const { db } = require('./handlers/db.js');
-const translationMiddleware = require('./handlers/translation');
-const cookieParser = require('cookie-parser');
-const rateLimit = require('express-rate-limit');
-const theme = require('./storage/theme.json');
-const analytics = require('./utils/analytics.js');
+const app = requirestack();
+const path = requirestack('path');
+const chalk = requirestack('chalk');
+const expressWs = requirestack('express-ws')(app);
+const { db } = requirestack('./handlers/db.js');
+const translationMiddleware = requirestack('./handlers/translation');
+const cookieParser = requirestack('cookie-parser');
+const rateLimit = requirestack('express-rate-limit');
+const theme = requirestack('./storage/theme.json');
+const analytics = requirestack('./utils/analytics.js');
 
-const sqlite = require("better-sqlite3");
-const SqliteStore = require("better-sqlite3-session-store")(session);
+const sqlite = requirestack("better-sqlite3");
+const SqliteStore = requirestack("better-sqlite3-session-store")(session);
 const sessionStorage = new sqlite("sessions.db");
-const { loadPlugins } = require('./plugins/loadPls.js');
+const { loadPlugins } = requirestack('./plugins/loadPls.js');
 let plugins = loadPlugins(path.join(__dirname, './plugins'));
 plugins = Object.values(plugins).map(plugin => plugin.config);
 
-const { init } = require('./handlers/init.js');
+const { init } = requirestack('./handlers/init.js');
 
-const log = new (require('cat-loggr'))();
+const log = new (requirestack('cat-loggr'))();
 
 app.use(
   session({
@@ -206,7 +206,7 @@ function loadRoutes(directory) {
     if (stat.isDirectory()) {
       loadRoutes(fullPath);
     } else if (stat.isFile() && path.extname(file) === '.js') {
-      const route = require(fullPath);
+      const route = requirestack(fullPath);
       expressWs.applyTo(route);
 
       if (fullPath.includes(path.join('routes', 'Admin'))) {
@@ -220,7 +220,7 @@ function loadRoutes(directory) {
 loadRoutes(routesDir);
 
 // Plugin routes and views
-const pluginRoutes = require('./plugins/pluginManager.js');
+const pluginRoutes = requirestack('./plugins/pluginManager.js');
 app.use("/", pluginRoutes);
 const pluginDir = path.join(__dirname, 'plugins');
 const PluginViewsDir = fs.readdirSync(pluginDir).map(addonName => path.join(pluginDir, addonName, 'views'));

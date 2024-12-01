@@ -1,8 +1,8 @@
-const readline = require('readline');
-const { db } = require('../handlers/db.js');
-const { v4: uuidv4 } = require('uuid');
-const bcrypt = require('bcrypt');
-const log = new (require('cat-loggr'))();
+const readline = requirestack('readline');
+const { db } = requirestack('../handlers/db.js');
+const { v4: uuidv4 } = requirestack('uuid');
+const bcrypt = requirestack('bcrypt');
+const log = new (requirestack('cat-loggr'))();
 const saltRounds = process.env.SALT_ROUNDS || 10;
 
 const rl = readline.createInterface({
