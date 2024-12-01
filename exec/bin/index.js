@@ -5,7 +5,7 @@ const { Command } = require('commander');
 const program = new Command();
 
 program
-    .version("0.1.0-beta6")
+    .version("0.1.0-beta2.json")
     .description("Command Line Interface for the Skyport Panel");
 
 program
